@@ -7,10 +7,15 @@ import { Genre } from "./assets/hooks/useGenre";
 import Sort from "./Components/Sort";
 import Page from "./Components/Page";
 
+export interface MovieQuery {
+  genre: Genre | null;
+  sort: string;
+  search: string;
+}
+
 const App = () => {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [sortOrder, setSelectedOrder] = useState<string>("");
   const [page, setPage] = useState(1);
+  const [MovieQuery, setMovieQuery] = useState<MovieQuery>({} as MovieQuery);
 
   return (
     <Grid
@@ -20,26 +25,30 @@ const App = () => {
       }}
     >
       <GridItem area={"nav"}>
-        <NavBar />
+        <NavBar
+          onSearchinput={(text) =>
+            setMovieQuery({ ...MovieQuery, search: text })
+          }
+        />
       </GridItem>
       <Show above="lg">
         <GenreList
-          selectedGenre={selectedGenre}
-          onSelectedGenre={(genre) => setSelectedGenre(genre)}
+          selectedGenre={MovieQuery.genre}
+          onSelectedGenre={(genre) =>
+            setMovieQuery({ ...MovieQuery, genre: genre })
+          }
         />
       </Show>
       <GridItem area={"main"}>
         <HStack paddingX={10}>
           <Sort
-            sortOrder={sortOrder}
-            onSortOrders={(order) => setSelectedOrder(order)}
+            sortOrder={MovieQuery.sort}
+            onSortOrders={(order) =>
+              setMovieQuery({ ...MovieQuery, sort: order })
+            }
           />
         </HStack>
-        <GridMain
-          page={page}
-          sortOrder={sortOrder}
-          selectedGenre={selectedGenre}
-        />
+        <GridMain page={page} movieQuery={MovieQuery} />
         <HStack paddingX={10}>
           <Page page={page} onChangePage={(page) => setPage(page)} />
         </HStack>
