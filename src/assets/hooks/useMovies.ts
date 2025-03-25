@@ -1,6 +1,9 @@
 
-import useData from "./useData";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { MovieQuery } from "../../App";
+import APiClients, { FetchData } from "../../services/apiClients";
+
+const apiClients = new APiClients<Movies>('/discover/movie');
 
 export interface Movies {
     id: number;
@@ -12,14 +15,21 @@ export interface Movies {
     adult: boolean;
   }
     
-  const useMovies = (movieQuery: MovieQuery, page: number) =>
-     useData<Movies>('/discover/movie', {
-      params: {
-        with_genres: movieQuery.genre?.id, 
-        sort_by: movieQuery.sort,
-        page: page,
-        with_keywords: movieQuery.search
-      }
-  }, [movieQuery, page])
+  const useMovies = (movieQuery: MovieQuery) => useInfiniteQuery<FetchData<Movies>, Error>({
+    queryKey: ['movies', movieQuery], 
+    queryFn:({pageParam = 1}) => apiClients.get({params: {
+      include_adult: false,
+      with_genres: movieQuery.genre?.id, 
+      sort_by: movieQuery.sort,
+      page: pageParam,
+      with_keywords: movieQuery.search
+    }}),
+    staleTime: 24 * 60 * 60 * 1000,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPage ) => {
+      return lastPage.total_pages ? allPage.length + 1 : undefined
+    }
+  })
+     
 
 export default useMovies

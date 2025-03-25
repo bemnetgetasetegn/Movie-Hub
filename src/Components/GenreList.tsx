@@ -7,13 +7,13 @@ interface Props {
 }
 
 const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
-  const { data, errors, isLoading } = useGenre();
+  const { data, error, isLoading } = useGenre();
 
-  if (errors) return null;
+  if (error) return null;
   if (isLoading) return <Spinner />;
   return (
     <List>
-      {data.map((genre) => (
+      {data?.genres?.map((genre) => (
         <ListItem key={genre.id}>
           <Button
             fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}

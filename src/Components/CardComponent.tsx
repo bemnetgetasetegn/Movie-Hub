@@ -1,6 +1,7 @@
 import { Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
 import { Movies } from "../assets/hooks/useMovies";
 import VoteAverage from "./VoteAverage";
+import img from "../assets/img.png";
 interface Props {
   movie: Movies;
 }
@@ -10,7 +11,11 @@ const CardComponent = ({ movie }: Props) => {
     <Card size={"sm"} borderRadius={10} overflow={"hidden"}>
       <Image
         objectFit={"contain"}
-        src={"https://image.tmdb.org/t/p/w300/" + movie.poster_path}
+        src={
+          movie.poster_path
+            ? "https://image.tmdb.org/t/p/w300/" + movie.poster_path
+            : img
+        }
       ></Image>
       <CardBody>
         <HStack justifyContent={"space-between"} paddingY={"5px"}>

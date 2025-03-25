@@ -5,7 +5,6 @@ import GenreList from "./Components/GenreList";
 import { useState } from "react";
 import { Genre } from "./assets/hooks/useGenre";
 import Sort from "./Components/Sort";
-import Page from "./Components/Page";
 
 export interface MovieQuery {
   genre: Genre | null;
@@ -14,7 +13,6 @@ export interface MovieQuery {
 }
 
 const App = () => {
-  const [page, setPage] = useState(1);
   const [MovieQuery, setMovieQuery] = useState<MovieQuery>({} as MovieQuery);
 
   return (
@@ -48,10 +46,8 @@ const App = () => {
             }
           />
         </HStack>
-        <GridMain page={page} movieQuery={MovieQuery} />
-        <HStack paddingX={10}>
-          <Page page={page} onChangePage={(page) => setPage(page)} />
-        </HStack>
+        <GridMain movieQuery={MovieQuery} />
+        <HStack paddingX={10}></HStack>
       </GridItem>
     </Grid>
   );

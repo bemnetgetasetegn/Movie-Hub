@@ -1,11 +1,33 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+
+
+export interface FetchData<T> {
+    results?: T[]
+    genres?: T[];
+    total_pages?:number,
+}
 
 const READ_ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZWQwNTAxZWExMzgyMmRiMjUyNzhkZGRlMDE0NmEzOSIsIm5iZiI6MTczOTc0MzMyOS4xNTY5OTk4LCJzdWIiOiI2N2IyNjA2MTQxZWE2MTA0NjI2ZGJhODIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Xe2nfp8aIbeLvNOj6mkummAvOVWOUmDboJeFsDh6LXw'
-
-export default axios.create({
+const apiInstance =  axios.create({
     baseURL: "https://api.themoviedb.org/3",
     headers: {
         Authorization: `Bearer ${READ_ACCESS_TOKEN}`,
         'Content-Type': 'application/json'
     }
 })
+
+class APiClients<T> {
+    endpoint: string
+
+    constructor(endpoint: string) {
+        this.endpoint = endpoint
+    }
+
+    get = (config: AxiosRequestConfig) =>  {
+        return apiInstance
+            .get<FetchData<T>>(this.endpoint, config)
+            .then(res => res.data)
+    }
+}
+
+export default APiClients
