@@ -1,17 +1,15 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useRef } from "react";
+import useMoviesStore from "../store";
 
-interface Props {
-  onSearchinput: (searchText: string) => void;
-}
-
-const SearchMovies = ({ onSearchinput }: Props) => {
+const SearchMovies = () => {
+  const setSearchInput = useMoviesStore((s) => s.setSearch);
   const ref = useRef<HTMLInputElement>(null);
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (ref.current) onSearchinput(ref.current.value);
+        if (ref.current) setSearchInput(ref.current.value);
       }}
     >
       <InputGroup>

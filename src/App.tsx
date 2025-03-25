@@ -1,20 +1,10 @@
 import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
-import NavBar from "./Components/NavBar";
-import GridMain from "./Components/GridMain";
 import GenreList from "./Components/GenreList";
-import { useState } from "react";
-import { Genre } from "./assets/hooks/useGenre";
+import GridMain from "./Components/GridMain";
+import NavBar from "./Components/NavBar";
 import Sort from "./Components/Sort";
 
-export interface MovieQuery {
-  genreId?: number;
-  sort: string;
-  search: string;
-}
-
 const App = () => {
-  const [MovieQuery, setMovieQuery] = useState<MovieQuery>({} as MovieQuery);
-
   return (
     <Grid
       templateAreas={{
@@ -23,11 +13,7 @@ const App = () => {
       }}
     >
       <GridItem area={"nav"}>
-        <NavBar
-          onSearchinput={(text) =>
-            setMovieQuery({ ...MovieQuery, search: text })
-          }
-        />
+        <NavBar />
       </GridItem>
       <Show above="lg">
         <GenreList />

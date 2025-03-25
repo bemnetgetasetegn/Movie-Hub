@@ -1,14 +1,18 @@
-import { Button, SimpleGrid, Text } from "@chakra-ui/react";
+import { Button, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import React from "react";
 import useMovies from "../assets/hooks/useMovies";
 import CardComponent from "./CardComponent";
 
 const GridMain = () => {
-  const { data, error, isFetchingNextPage, fetchNextPage } = useMovies();
+  const { data, error, isFetchingNextPage, fetchNextPage, isLoading } =
+    useMovies();
+
+  if (isLoading) return <Spinner />;
+  if (error) throw error;
 
   return (
     <div>
-      {error && <Text>{error.message}</Text>}
+      {error && <Text>{error}</Text>}
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding={10}
