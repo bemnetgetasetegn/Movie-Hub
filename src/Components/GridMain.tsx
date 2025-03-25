@@ -1,16 +1,10 @@
 import { Button, SimpleGrid, Text } from "@chakra-ui/react";
+import React from "react";
 import useMovies from "../assets/hooks/useMovies";
 import CardComponent from "./CardComponent";
-import { MovieQuery } from "../App";
-import React from "react";
 
-interface Props {
-  movieQuery: MovieQuery;
-}
-
-const GridMain = ({ movieQuery }: Props) => {
-  const { data, error, isFetchingNextPage, fetchNextPage } =
-    useMovies(movieQuery);
+const GridMain = () => {
+  const { data, error, isFetchingNextPage, fetchNextPage } = useMovies();
 
   return (
     <div>

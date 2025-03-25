@@ -7,7 +7,7 @@ import { Genre } from "./assets/hooks/useGenre";
 import Sort from "./Components/Sort";
 
 export interface MovieQuery {
-  genre: Genre | null;
+  genreId?: number;
   sort: string;
   search: string;
 }
@@ -30,23 +30,13 @@ const App = () => {
         />
       </GridItem>
       <Show above="lg">
-        <GenreList
-          selectedGenre={MovieQuery.genre}
-          onSelectedGenre={(genre) =>
-            setMovieQuery({ ...MovieQuery, genre: genre })
-          }
-        />
+        <GenreList />
       </Show>
       <GridItem area={"main"}>
         <HStack paddingX={10}>
-          <Sort
-            sortOrder={MovieQuery.sort}
-            onSortOrders={(order) =>
-              setMovieQuery({ ...MovieQuery, sort: order })
-            }
-          />
+          <Sort />
         </HStack>
-        <GridMain movieQuery={MovieQuery} />
+        <GridMain />
         <HStack paddingX={10}></HStack>
       </GridItem>
     </Grid>

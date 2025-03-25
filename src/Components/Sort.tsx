@@ -1,11 +1,10 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import useMoviesStore from "../store";
 
-interface Props {
-  onSortOrders: (order: string) => void;
-  sortOrder: string;
-}
+const Sort = () => {
+  const sortOrder = useMoviesStore((s) => s.movieQuery.sort);
+  const setSortOrder = useMoviesStore((s) => s.setSort);
 
-const Sort = ({ onSortOrders, sortOrder }: Props) => {
   const sortOrders = [
     { value: "", label: "Popularity" },
     { value: "-added", label: "Date Added" },
@@ -13,21 +12,21 @@ const Sort = ({ onSortOrders, sortOrder }: Props) => {
     { value: "primary_release_date.desc", label: "Release Date" },
     { value: "vote_count.desc", label: "Vote Count" },
   ];
-  const courrentSortOrder = sortOrders.find(
+  const currentSortOrder = sortOrders.find(
     (order) => order.value === sortOrder
   );
-  
+
   return (
     <Menu>
       <MenuButton as={Button}>
-        Order By: {courrentSortOrder?.label || "Popularity"}
+        Order By: {currentSortOrder?.label || "Popularity"}
       </MenuButton>
       <MenuList>
         {sortOrders.map((order) => (
           <MenuItem
             key={order.value}
             value={order.value}
-            onClick={() => onSortOrders(order.value)}
+            onClick={() => setSortOrder(order.value)}
           >
             {order.label}
           </MenuItem>
