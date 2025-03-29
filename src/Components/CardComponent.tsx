@@ -1,29 +1,31 @@
-import { Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
-import { Movies } from "../assets/hooks/useMovies";
-import VoteAverage from "./VoteAverage";
+import { Card, CardBody, Heading, Image } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Movies } from "../assets/Entities/Movies";
 import img from "../assets/img.png";
+import VoteAverage from "./VoteAverage";
 interface Props {
-  movie: Movies;
+  movie?: Movies;
 }
 
 const CardComponent = ({ movie }: Props) => {
   return (
-    <Card size={"sm"} borderRadius={10} overflow={"hidden"}>
+    <Card bg={"transparent"}>
       <Image
         objectFit={"contain"}
+        borderRadius={10}
         src={
-          movie.poster_path
+          movie?.poster_path
             ? "https://image.tmdb.org/t/p/w300/" + movie.poster_path
             : img
         }
       ></Image>
-      <CardBody>
-        <HStack justifyContent={"space-between"} paddingY={"5px"}>
-          <Heading fontSize={"2xl"}>{movie.title}</Heading>
-          <VoteAverage rating={movie.vote_average}></VoteAverage>
-        </HStack>
-        {/* <MovieDescription movie_desc={movie.overview} /> */}
-        {movie.release_date}
+      <CardBody paddingY={4} marginY={1}>
+        <Link to={`movie/${movie?.id}`}>
+          <Heading marginBottom={1} fontSize={"xl"}>
+            {movie?.title}
+          </Heading>
+        </Link>
+        <VoteAverage rating={movie?.vote_average}></VoteAverage>
       </CardBody>
     </Card>
   );

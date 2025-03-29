@@ -2,19 +2,10 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import APiClients, { FetchData } from "../../services/apiClients";
 import useMoviesStore from "../../store";
+import { Movies } from "../Entities/Movies";
 
 const apiClients = new APiClients<Movies>('/discover/movie');
 
-export interface Movies {
-    id: number;
-    title: string;
-    overview: string;
-    poster_path: string;
-    vote_average: number;
-    release_date: string;
-    adult: boolean;
-  }
-  
   const useMovies = () => {
       const movieQuery = useMoviesStore(s => s.movieQuery)
 
@@ -31,7 +22,7 @@ export interface Movies {
     staleTime: 24 * 60 * 60 * 1000,
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPage ) => {
-      return lastPage.total_pages ? allPage.length + 1 : undefined
+      return lastPage.total_pages  ? allPage.length + 1 : undefined
     }
   })
 }

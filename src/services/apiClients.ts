@@ -4,6 +4,7 @@ import axios, { AxiosRequestConfig } from "axios";
 export interface FetchData<T> {
     results?: T[]
     genres?: T[];
+    posters?: T[]
     total_pages?:number,
 }
 
@@ -28,6 +29,15 @@ class APiClients<T> {
             .get<FetchData<T>>(this.endpoint, config)
             .then(res => res.data)
     }
+
+    getDetails = (movieId: number | string) => {
+        return apiInstance
+            .get<T>(this.endpoint + '/' + movieId)
+            .then(res => res.data)
+    }
 }
+
+// I should set the url when calling the
+//  APIClient class rather than creating a method for each request
 
 export default APiClients

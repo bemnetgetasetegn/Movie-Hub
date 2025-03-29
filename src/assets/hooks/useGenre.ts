@@ -2,14 +2,10 @@
 import { useQuery } from "@tanstack/react-query";
 import APiClients from "../../services/apiClients";
 import genreStaticData from "../../data/genreStaticData";
+import { Genre } from "../Entities/Genre";
 
 const apiClients = new APiClients<Genre>('/genre/movie/list')
 
-
-export interface Genre {
-    id: number
-    name: string
-}
 
 const useGenre = () => useQuery({
     queryKey: ['genre'],

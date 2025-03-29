@@ -1,35 +1,52 @@
-import { Button, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { Button, Heading, Spinner, Text } from "@chakra-ui/react";
 import React from "react";
 import useMovies from "../assets/hooks/useMovies";
+import useNowPlayingMovies from "../assets/hooks/useNowPlayingMovies";
+import GridMoviesContainer from "../Components/GridMoviesContainer";
 import CardComponent from "./CardComponent";
+import MovieCardContainer from "./MovieCardContainer";
 
 const GridMain = () => {
-  const { data, error, isFetchingNextPage, fetchNextPage, isLoading } =
-    useMovies();
+  const {
+    data: movies,
+    error,
+    isFetchingNextPage,
+    fetchNextPage,
+    isLoading,
+  } = useMovies();
+
+  const { data: NowPlaying } = useNowPlayingMovies();
 
   if (isLoading) return <Spinner />;
   if (error) throw error;
 
   return (
-    <div>
+    <>
       {error && <Text>{error}</Text>}
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
-        padding={10}
-        spacing={10}
-      >
-        {data?.pages.map((page, index) => (
+      <GridMoviesContainer>
+        {movies?.pages.map((page, index) => (
           <React.Fragment key={index}>
             {page.results?.map((movie) => (
-              <CardComponent movie={movie} key={movie.id}></CardComponent>
+              <MovieCardContainer key={movie.id}>
+                <CardComponent movie={movie}></CardComponent>
+              </MovieCardContainer>
             ))}
           </React.Fragment>
         ))}
-      </SimpleGrid>
+      </GridMoviesContainer>
+
       <Button disabled={isFetchingNextPage} onClick={() => fetchNextPage()}>
         Load More
       </Button>
-    </div>
+      <Heading>Now Playing</Heading>
+      <GridMoviesContainer>
+        {NowPlaying?.results?.map((movie) => (
+          <MovieCardContainer key={movie.id}>
+            <CardComponent movie={movie}></CardComponent>
+          </MovieCardContainer>
+        ))}
+      </GridMoviesContainer>
+    </>
   );
 };
 
