@@ -12,6 +12,7 @@ const route = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "movie/:movieId", element: <MovieDetails /> },
       { path: "search", element: <Search /> },
+      { path: "search/movie/:movieId", element: <MovieDetails /> },
     ],
   },
 ]);

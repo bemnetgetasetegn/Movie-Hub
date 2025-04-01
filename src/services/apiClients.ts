@@ -4,7 +4,7 @@ import axios, { AxiosRequestConfig } from "axios";
 export interface FetchData<T> {
     results?: T[]
     genres?: T[];
-    posters?: T[]
+    backdrops?: T[]
     total_pages?:number,
 }
 
@@ -34,6 +34,12 @@ class APiClients<T> {
         return apiInstance
             .get<T>(this.endpoint + '/' + movieId)
             .then(res => res.data)
+    }
+    
+    getCredits = () => {
+        return apiInstance  
+                .get<T>(this.endpoint)
+                .then(res => res.data)
     }
 }
 

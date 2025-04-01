@@ -7,7 +7,7 @@ const Sort = () => {
 
   const sortOrders = [
     { value: "", label: "Popularity" },
-    { value: "-added", label: "Date Added" },
+    { value: "release_date.lte", label: "Release Date" },
     { value: "original_title.desc", label: "Name" },
     { value: "primary_release_date.desc", label: "Release Date" },
     { value: "vote_count.desc", label: "Vote Count" },

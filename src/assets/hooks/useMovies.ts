@@ -14,7 +14,7 @@ const apiClients = new APiClients<Movies>('/discover/movie');
     queryFn:({pageParam = 1}) => apiClients.get({
       params: {
         include_adult: false,
-        with_genres: movieQuery.genreId, 
+        with_genres: movieQuery.genre?.id, 
         sort_by: movieQuery.sort,
         page: pageParam,
         with_keywords: movieQuery.search

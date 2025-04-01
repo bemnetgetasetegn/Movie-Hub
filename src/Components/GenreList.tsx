@@ -4,8 +4,8 @@ import useMoviesStore from "../store";
 
 const GenreList = () => {
   const { data, error, isLoading } = useGenre();
-  const selectedGenreId = useMoviesStore((s) => s.movieQuery.genreId);
-  const setSelectedGenreId = useMoviesStore((s) => s.setGenreId);
+  const selectedGenreId = useMoviesStore((s) => s.movieQuery.genre);
+  const setSelectedGenreId = useMoviesStore((s) => s.setGenre);
 
   if (error) return null;
   if (isLoading) return <Spinner />;
@@ -14,8 +14,8 @@ const GenreList = () => {
       {data?.genres?.map((genre) => (
         <ListItem key={genre.id}>
           <Button
-            fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
-            onClick={() => setSelectedGenreId(genre.id)}
+            fontWeight={genre.id === selectedGenreId?.id ? "bold" : "normal"}
+            onClick={() => setSelectedGenreId(genre)}
             width={150}
             margin={1}
             variant={"outline"}

@@ -27,7 +27,7 @@ const GridMain = () => {
         {movies?.pages.map((page, index) => (
           <React.Fragment key={index}>
             {page.results?.map((movie) => (
-              <MovieCardContainer key={movie.id}>
+              <MovieCardContainer  key={movie.id}>
                 <CardComponent movie={movie}></CardComponent>
               </MovieCardContainer>
             ))}

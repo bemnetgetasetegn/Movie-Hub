@@ -2,10 +2,13 @@ import { Card, CardBody, Heading, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Movies } from "../assets/Entities/Movies";
 import img from "../assets/img.png";
+import { ImagesPoster } from "../data/TMDBImages";
 import VoteAverage from "./VoteAverage";
 interface Props {
   movie?: Movies;
 }
+
+//Images contain the base url
 
 const CardComponent = ({ movie }: Props) => {
   return (
@@ -13,11 +16,7 @@ const CardComponent = ({ movie }: Props) => {
       <Image
         objectFit={"contain"}
         borderRadius={10}
-        src={
-          movie?.poster_path
-            ? "https://image.tmdb.org/t/p/w300/" + movie.poster_path
-            : img
-        }
+        src={movie?.poster_path ? ImagesPoster + movie.poster_path : img}
       ></Image>
       <CardBody paddingY={4} marginY={1}>
         <Link to={`movie/${movie?.id}`}>

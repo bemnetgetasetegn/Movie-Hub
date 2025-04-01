@@ -15,4 +15,8 @@ export interface Movies {
   spoken_languages?: {english_name: string, iso_639_1: string, name: string}[]
   status?: string
   tagline?: string
+  popularity?: number
+  runtime?: number
+  vote_count?: number
+  production_companies?: {name: string}[]
 }

@@ -1,21 +1,22 @@
 import { create } from "zustand";
+import { Genre } from "./assets/Entities/Genre";
 
 interface MovieQuery {
-  genreId?: Number;
+  genre?: Genre ;
   sort?: string;
   search?: string;
 }
 
 interface MovieQueryStore {
     movieQuery: MovieQuery,
-    setGenreId: (genreId: number) => void,
+    setGenre: (genre: Genre) => void,
     setSort: (sort: string) => void,
     setSearch: (search: string) => void
 }
 
 const useMoviesStore =  create<MovieQueryStore>(set => ({
   movieQuery: {},
-  setGenreId: (genreId) => set(() => ({movieQuery: {genreId}})),
+  setGenre: (genre) => set(() => ({movieQuery: {genre: genre}})),
   setSort: (sort) => set((store) => ({movieQuery: {...store.movieQuery, sort}})),
   setSearch: (search) => set(store => ({movieQuery: {...store.movieQuery, search}}))
 }))

@@ -1,5 +1,6 @@
-import { GridItem, SimpleGrid } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import useImages from "../assets/hooks/useImages";
+import { Images } from "../data/TMDBImages";
 
 interface Props {
   movieId?: number | string;
@@ -9,18 +10,13 @@ const MovieImages = ({ movieId }: Props) => {
   if (!movieId) return null;
   const { data: images } = useImages(movieId);
   return (
-    <>
-      {images?.backdrops?.map((image, index) => (
-        <SimpleGrid columns={{ base: 1, lg: 2 }}>
-          <GridItem>
-            <img
-              key={index}
-              src={"https://image.tmdb.org/t/p/w300" + image.file_path}
-            />
-          </GridItem>
-        </SimpleGrid>
-      ))}
-    </>
+    <Box padding={5}>
+      <Flex overflowX={"scroll"} gap={2}>
+        {images?.backdrops?.map((image, index) => (
+          <img width={500} key={index} src={Images + image.file_path} />
+        ))}
+      </Flex>
+    </Box>
   );
 };
 
