@@ -1,17 +1,23 @@
-import { Card, Heading } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import useNowPlayingMovies from "../assets/hooks/useNowPlayingMovies";
+import MovieData from "./MovieData";
 
-interface Props {
-  title: string;
-  children: ReactNode;
-}
+const NowPlayingMovies = () => {
+  const {
+    data: movies,
+    error,
+    fetchNextPage,
+    isLoading,
+    hasNextPage,
+  } = useNowPlayingMovies();
 
-const NowPlayingMovies = ({ title, children }: Props) => {
   return (
-    <>
-      <Heading>{title}</Heading>
-      <Card>{children}</Card>
-    </>
+    <MovieData
+      movies={movies}
+      error={error}
+      fetchNextPage={fetchNextPage}
+      hasNextPage={hasNextPage}
+      isLoading={isLoading}
+    />
   );
 };
 

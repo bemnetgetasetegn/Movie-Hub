@@ -19,7 +19,7 @@ const CardComponent = ({ movie }: Props) => {
         src={movie?.poster_path ? ImagesPoster + movie.poster_path : img}
       ></Image>
       <CardBody paddingY={4} marginY={1}>
-        <Link to={`movie/${movie?.id}`}>
+        <Link to={`/movie/${movie?.id}`}>
           <Heading marginBottom={1} fontSize={"xl"}>
             {movie?.title}
           </Heading>

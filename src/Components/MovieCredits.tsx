@@ -1,15 +1,11 @@
 import {
   Box,
-  Card,
-  CardBody,
-  Flex,
-  HStack,
   Text,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
+import DefaultProfile from "../assets/DefaultProfile.webp";
 import useCredits from "../assets/hooks/useCredits";
 import { ImagesPersonProfile } from "../data/TMDBImages";
-import DefaultProfile from "../assets/DefaultProfile.webp";
 
 interface Props {
   movieId: number | string;

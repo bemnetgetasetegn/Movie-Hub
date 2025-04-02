@@ -1,9 +1,4 @@
-import {
-  Box,
-  Input,
-  InputGroup,
-  InputLeftElement
-} from "@chakra-ui/react";
+import { Box, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useRef } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +11,7 @@ const SearchMovies = () => {
 
   return (
     <Box width={"100%"}>
-      <Box width={"80%"}>
+      <Box width={"100%"}>
         <form
           onSubmit={(event) => {
             event.preventDefault();
