@@ -1,12 +1,12 @@
+import { Spinner, Text } from "@chakra-ui/react";
+import { InfiniteData } from "@tanstack/react-query";
 import React from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { Movies } from "../assets/Entities/Movies";
+import { FetchData } from "../services/apiClients";
+import CardComponent from "./CardComponent";
 import GridMoviesContainer from "./GridMoviesContainer";
 import MovieCardContainer from "./MovieCardContainer";
-import CardComponent from "./CardComponent";
-import { Button, Spinner, Text } from "@chakra-ui/react";
-import { Movies } from "../assets/Entities/Movies";
-import { InfiniteData } from "@tanstack/react-query";
-import { FetchData } from "../services/apiClients";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   movies?: InfiniteData<FetchData<Movies>>;
@@ -23,7 +23,7 @@ const MovieData = ({
   fetchNextPage,
   hasNextPage,
 }: Props) => {
-  const allMovies = movies?.pages.flatMap((page) => page.results) || []; 
+  const allMovies = movies?.pages.flatMap((page) => page.results) || [];
 
   if (isLoading) return <Spinner />;
   if (error) throw error;

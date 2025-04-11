@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Movie-Hub
 =======
 # React + TypeScript + Vite
@@ -52,3 +53,7 @@ export default tseslint.config({
 })
 ```
 >>>>>>> 2879c54 (Movie Hub)
+=======
+# Movie-Hub
+Simple movie discovery site
+>>>>>>> 4c238030c7bb787e796dc0a725d685d1298ee1ed

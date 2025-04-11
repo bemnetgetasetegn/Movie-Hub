@@ -21,6 +21,7 @@ const apiClients = new APiClients<Movies>('/discover/movie');
     }}),
     staleTime: 24 * 60 * 60 * 1000,
     initialPageParam: 1,
+    refetchOnWindowFocus: false,
     getNextPageParam: (lastPage, allPage ) => {
       return lastPage.total_pages  ? allPage.length + 1 : undefined
     }

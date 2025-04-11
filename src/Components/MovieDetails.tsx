@@ -21,6 +21,13 @@ import minutesToReadable from "../services/MinutesToReadable";
 import MovieVideos from "./MovieVideos";
 import MovieCredits from "./MovieCredits";
 
+interface Props {
+  title?: string;
+  name?: string;
+  release_date?: string;
+  poster_path: string;
+}
+
 const MovieDetails = () => {
   const setMovieQuery = useMoviesStore((s) => s.setGenre);
   const navigation = useNavigate();
@@ -35,7 +42,7 @@ const MovieDetails = () => {
         <Box padding={3} width={"100%"}>
           <SimpleGrid
             columns={{ base: 1, md: 2 }}
-            bgImg={`linear-gradient(rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.90)), url(${Images}${data?.backdrop_path})`}
+            bgImg={`linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(${Images}${data?.backdrop_path})`}
             bgAttachment={"scroll"}
             bgSize={"cover"}
             bgPosition={"center"}
@@ -114,6 +121,7 @@ const MovieDetails = () => {
                 ))}
               </HStack>
               <Text> {data?.tagline}</Text>
+              <Text>Vote count: {data?.vote_count}</Text>
               <HStack py={3} display={"flex"}>
                 <FaStar color="gold" />
                 <Text>

@@ -5,7 +5,7 @@ import {
   Menu,
   MenuButton,
   MenuItem,
-  MenuList
+  MenuList,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { IoIosSearch, IoMdClose } from "react-icons/io";
@@ -23,23 +23,44 @@ const NavBar = () => {
         {" "}
         <Image src={logo} objectFit={"cover"} boxSize={"50px"}></Image>
       </Link>
-      <Menu>
-        <MenuButton as={Button}>Movies</MenuButton>
-        <MenuList>
-          <MenuItem>
-            <Link to={"/movie"}>Popular</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to={"/movie/now-playing"}>Now Playing</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to={"/movie/upcoming"}>Upcoming</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to={"/movie/top-rated"}>Top Rated</Link>
-          </MenuItem>
-        </MenuList>
-      </Menu>
+      {!display && (
+        <Menu>
+          <MenuButton as={Button}>Movies</MenuButton>
+          <MenuList>
+            <MenuItem>
+              <Link to={"/movie"}>Popular</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={"/movie/now-playing"}>Now Playing</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={"/movie/upcoming"}>Upcoming</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={"/movie/top-rated"}>Top Rated</Link>
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      )}
+      {!display && (
+        <Menu>
+          <MenuButton as={Button}>Movies</MenuButton>
+          <MenuList>
+            <MenuItem>
+              <Link to={"/tv"}>Popular</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={"/tv/now-playing"}>Now Playing</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={"/tv/upcoming"}>Upcoming</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={"/tv/top-rated"}>Top Rated</Link>
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      )}
       {display ? (
         <IoMdClose
           size={25}

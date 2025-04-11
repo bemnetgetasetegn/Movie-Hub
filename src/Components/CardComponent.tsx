@@ -1,4 +1,4 @@
-import { Card, CardBody, Heading, Image } from "@chakra-ui/react";
+import { Card, CardBody, Heading, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Movies } from "../assets/Entities/Movies";
 import img from "../assets/img.png";
@@ -21,7 +21,10 @@ const CardComponent = ({ movie }: Props) => {
       <CardBody paddingY={4} marginY={1}>
         <Link to={`/movie/${movie?.id}`}>
           <Heading marginBottom={1} fontSize={"xl"}>
-            {movie?.title}
+            {movie?.title}{" "}
+            <Text as={"span"} color={"grey"}>
+              ({movie?.release_date.substring(0, 4)})
+            </Text>
           </Heading>
         </Link>
         <VoteAverage rating={movie?.vote_average}></VoteAverage>

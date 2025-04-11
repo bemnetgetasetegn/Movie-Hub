@@ -1,25 +1,23 @@
-import useMovies from "../assets/hooks/useMovies";
+import useUpcoming from "../assets/hooks/useUpcoming";
 import MovieData from "./MovieData";
 
-const GridMain = () => {
+const UpComingMovies = () => {
   const {
     data: movies,
     error,
     fetchNextPage,
     isLoading,
-    hasNextPage
-  } = useMovies();
-
-  
+    hasNextPage,
+  } = useUpcoming();
   return (
     <MovieData
       movies={movies}
       error={error}
-      isLoading={isLoading}
       fetchNextPage={fetchNextPage}
       hasNextPage={hasNextPage}
+      isLoading={isLoading}
     />
   );
 };
 
-export default GridMain;
+export default UpComingMovies;
