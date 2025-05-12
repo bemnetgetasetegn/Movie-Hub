@@ -19,10 +19,9 @@ const NavBar = () => {
 
   return (
     <HStack justifyContent={"space-around"} padding={"10px"}>
-      <Link to={"/"}>
-        {" "}
+      <a href="/">
         <Image src={logo} objectFit={"cover"} boxSize={"50px"}></Image>
-      </Link>
+      </a>{" "}
       {!display && (
         <Menu>
           <MenuButton as={Button}>Movies</MenuButton>

@@ -10,7 +10,7 @@ const Sort = () => {
     { value: "release_date.lte", label: "Release Date" },
     { value: "original_title.desc", label: "Name" },
     { value: "primary_release_date.desc", label: "Release Date" },
-    { value: "vote_average.gte", label: "Vote Average" },
+    { value: "vote_average.desc", label: "Vote Average" },
   ];
   const currentSortOrder = sortOrders.find(
     (order) => order.value === sortOrder
