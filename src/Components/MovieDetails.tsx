@@ -21,13 +21,6 @@ import minutesToReadable from "../services/MinutesToReadable";
 import MovieVideos from "./MovieVideos";
 import MovieCredits from "./MovieCredits";
 
-interface Props {
-  title?: string;
-  name?: string;
-  release_date?: string;
-  poster_path: string;
-}
-
 const MovieDetails = () => {
   const setMovieQuery = useMoviesStore((s) => s.setGenre);
   const navigation = useNavigate();
