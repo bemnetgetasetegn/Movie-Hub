@@ -32,7 +32,7 @@ const MovieDetails = () => {
   return (
     <>
       <Flex justifyContent={"space-between"} gap={8}>
-        <Box padding={3} width={"100%"}>
+        <Box padding={3}>
           <SimpleGrid
             columns={{ base: 1, md: 2 }}
             bgImg={`linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(${Images}${data?.backdrop_path})`}
