@@ -31,7 +31,7 @@ const MovieDetails = () => {
   if (isLoading) return <Spinner />;
   return (
     <>
-      <Flex justifyContent={"space-between"} gap={8}>
+      <Flex justifyContent={"space-between"}>
         <Box padding={3}>
           <SimpleGrid
             columns={{ base: 1, md: 2 }}
@@ -47,7 +47,7 @@ const MovieDetails = () => {
             borderRadius={10}
             justifyContent={"center"}
             alignItems={"center"}
-            position="relative"
+            
           >
             <Img
               borderRadius={10}
@@ -144,9 +144,11 @@ const MovieDetails = () => {
           </SimpleGrid>
         </Box>
       </Flex>
-      <MovieCredits movieId={movieId} />
-      <MovieImages movieId={movieId} />
-      <MovieVideos movieId={movieId} />
+      <Box>
+        <MovieCredits movieId={movieId} />
+        <MovieImages movieId={movieId} />
+        <MovieVideos movieId={movieId} />
+      </Box>
     </>
   );
 };
