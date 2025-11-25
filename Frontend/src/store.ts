@@ -1,24 +1,48 @@
 import { create } from "zustand";
 import { Genre } from "./assets/Entities/Genre";
 
-interface MovieQuery {
-  genre?: Genre ;
+interface ContentQuery {
+  genre?: Genre;
   sort?: string;
   search?: string;
 }
 
-interface MovieQueryStore {
-    movieQuery: MovieQuery,
-    setGenre: (genre: Genre) => void,
-    setSort: (sort: string) => void,
-    setSearch: (search: string) => void
+interface ContentQueryStore {
+  movieQuery: ContentQuery;
+  tvQuery: ContentQuery;
+  setMovieGenre: (genre: Genre) => void;
+  setTVGenre: (genre: Genre) => void;
+  setMovieSort: (sort: string) => void;
+  setTVSort: (sort: string) => void;
+  setSearch: (search: string) => void;
 }
 
-const useMoviesStore =  create<MovieQueryStore>(set => ({
+const useMoviesStore = create<ContentQueryStore>((set) => ({
   movieQuery: {},
-  setGenre: (genre) => set(() => ({movieQuery: {genre: genre}})),
-  setSort: (sort) => set((store) => ({movieQuery: {...store.movieQuery, sort}})),
-  setSearch: (search) => set(store => ({movieQuery: {...store.movieQuery, search}}))
-}))
+  tvQuery: {},
+  setMovieGenre: (genre) => set((store) => ({
+    movieQuery: { ...store.movieQuery, genre }
+  })),
+  setTVGenre: (genre) => set((store) => ({
+    tvQuery: { ...store.tvQuery, genre }
+  })),
+  setMovieSort: (sort) => set((store) => ({
+    movieQuery: { ...store.movieQuery, sort }
+  })),
+  setTVSort: (sort) => set((store) => ({
+    tvQuery: { ...store.tvQuery, sort }
+  })),
+  setSearch: (search) => set((store) => ({
+    movieQuery: { ...store.movieQuery, search },
+    tvQuery: { ...store.tvQuery, search }
+  })),
+  // Keep backward compatibility
+  setGenre: (genre: Genre) => set((store) => ({
+    movieQuery: { ...store.movieQuery, genre }
+  })),
+  setSort: (sort: string) => set((store) => ({
+    movieQuery: { ...store.movieQuery, sort }
+  })),
+}));
 
-export default useMoviesStore
+export default useMoviesStore;

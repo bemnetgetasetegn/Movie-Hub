@@ -9,6 +9,8 @@ const apiInstance =  axios.create({
     }
 })
 
+const externalApiInstance = axios.create();
+
 export interface FetchData<T> {
     results?: T[]
     genres?: T[];
@@ -28,6 +30,13 @@ class APiClients<T> {
         return apiInstance
             .get<FetchData<T>>(this.endpoint, config)
             .then(res => res.data)
+    }
+
+    getMovies = () => {
+        return externalApiInstance
+        .get<T>(this.endpoint)
+        .then(res => res.data)
+
     }
 
     getDetails = (movieId: number | string) => {

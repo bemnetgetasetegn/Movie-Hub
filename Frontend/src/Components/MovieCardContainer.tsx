@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 interface Props {
@@ -6,13 +6,15 @@ interface Props {
 }
 
 const MovieCardContainer = ({ children }: Props) => {
+  const shadow = useColorModeValue("xl", "dark-xl");
+
   return (
     <Box
-      borderRadius={10}
-      overflow={"hidden"}
-      _hover={{
-        transform: "scale(1.03)",
-        transition: "transform .15s ease-in",
+      borderRadius="xl"
+      overflow="hidden"
+      shadow={shadow}
+      sx={{
+        transition: "all 0.3s ease",
       }}
     >
       {children}

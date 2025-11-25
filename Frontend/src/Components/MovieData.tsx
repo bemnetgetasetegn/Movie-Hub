@@ -1,4 +1,4 @@
-import { Spinner, Text } from "@chakra-ui/react";
+import { Spinner, Text, Box, Skeleton } from "@chakra-ui/react";
 import { InfiniteData } from "@tanstack/react-query";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -7,6 +7,20 @@ import { FetchData } from "../services/apiClients";
 import CardComponent from "./CardComponent";
 import GridMoviesContainer from "./GridMoviesContainer";
 import MovieCardContainer from "./MovieCardContainer";
+
+const MovieSkeletonGrid = () => (
+  <GridMoviesContainer>
+    {[...Array(20)].map((_, i) => (
+      <Box key={i} borderRadius="xl" overflow="hidden">
+        <Skeleton height="400px" borderRadius="xl" />
+        <Box p={4}>
+          <Skeleton height="20px" mb={2} />
+          <Skeleton height="16px" w="60%" />
+        </Box>
+      </Box>
+    ))}
+  </GridMoviesContainer>
+);
 
 interface Props {
   movies?: InfiniteData<FetchData<Movies>>;
@@ -24,9 +38,9 @@ const MovieData = ({
   hasNextPage,
 }: Props) => {
   const allMovies = movies?.pages.flatMap((page) => page.results) || [];
+if (isLoading) return <MovieSkeletonGrid />;
 
-  if (isLoading) return <Spinner />;
-  if (error) throw error;
+if (error) throw error;
   return (
     <>
       <InfiniteScroll

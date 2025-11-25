@@ -5,7 +5,7 @@ import useMoviesStore from "../store";
 const GenreList = () => {
   const { data, error, isLoading } = useGenre();
   const selectedGenreId = useMoviesStore((s) => s.movieQuery.genre);
-  const setSelectedGenreId = useMoviesStore((s) => s.setGenre);
+  const setSelectedGenreId = useMoviesStore((s) => s.setMovieGenre);
 
   if (error) return null;
   if (isLoading) return <Spinner />;

@@ -5,6 +5,8 @@ import MovieDetails from "../Components/MovieDetails";
 import Search from "../Components/SearchPage";
 import NowPlayingMovies from "../Components/NowPlayingMovies";
 import UpComingMovies from "../Components/UpComingMovies";
+import TVSeriesGrid from "../Components/TVSeriesGrid";
+import TVSeriesDetails from "../Components/TVSeriesDetails";
 import LoginPage from "./AuthPage"; // Add this import
 import SignUpPage from "./SignUpPage";
 
@@ -18,6 +20,8 @@ const route = createBrowserRouter([
       { path: "movie/now-playing", element: <NowPlayingMovies /> },
       { path: "movie/upcoming", element: <UpComingMovies /> },
       { path: "movie/:movieId", element: <MovieDetails /> },
+      { path: "tv", element: <TVSeriesGrid /> },
+      { path: "tv/:seriesId", element: <TVSeriesDetails /> },
       { path: "search", element: <Search /> },
     ],
   },
