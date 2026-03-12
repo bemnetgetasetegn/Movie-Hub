@@ -715,7 +715,7 @@ const TVSeriesDetails = () => {
                         shadow="2xl"
                       >
                         <iframe
-                          src={`https://vidsrc-embed.ru/embed/tv?imdb=${externalIds?.imdb_id || data?.id}&s=${playingEpisode.season}&e=${playingEpisode.episode}`}
+                          src={`https://vidsrc-embed.su/embed/tv?imdb=${externalIds?.imdb_id || data?.id}&s=${playingEpisode.season}&e=${playingEpisode.episode}`}
                           allowFullScreen
                           style={{ width: "100%", height: "100%" }}
                           title={`Playing ${data?.name} S${playingEpisode.season}E${playingEpisode.episode}`}
@@ -744,7 +744,7 @@ const TVSeriesDetails = () => {
                           <Button
                             variant="outline"
                             onClick={() => {
-                              const url = `https://vidsrc-embed.ru/embed/tv?imdb=${externalIds?.imdb_id || data?.id}&s=${playingEpisode.season}&e=${playingEpisode.episode}`;
+                              const url = `https://vidsrc-embed.su/embed/tv?imdb=${externalIds?.imdb_id || data?.id}&s=${playingEpisode.season}&e=${playingEpisode.episode}`;
                               window.open(url, '_blank');
                             }}
                             leftIcon={<FaShare />}
