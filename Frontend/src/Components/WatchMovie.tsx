@@ -129,7 +129,7 @@ const WatchMovie = ({ id }: Props) => {
               {/* Video Player */}
               <AspectRatio ratio={16 / 9} position="relative" zIndex={3}>
                 <iframe
-                  src={`https://vidsrc-embed.ru/embed/movie?tmdb=${id}`}
+                  src={`https://vidsrc-embed.su/embed/movie?tmdb=${id}`}
                   allowFullScreen
                   title="Watch Movie"
                   style={{

@@ -1,9 +1,11 @@
 import express from 'express'
 import { register, login } from '../Controllers/authController.js'
+import { createVisitor } from '../Controllers/visitorController.js'
 
-const authRoutes = express.Router()
+const apiRoutes = express.Router()
 
-authRoutes.post('/register', register)
-authRoutes.post('/login', login)
+apiRoutes.post('/register', register)
+apiRoutes.post('/login', login)
+apiRoutes.post('/visitors', createVisitor)
 
-export default authRoutes
+export default apiRoutes
